@@ -17,19 +17,21 @@ import server.prospects.Person;
 public class Search extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
+	private final int port = 3232;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE html>");
+		String queryStringFromBrowserForm = request.getParameter("query");
 
-		String query = request.getParameter("query");
-
-		Socket client = new Socket("localhost", 3232);
+		Socket client = new Socket("localhost", port);
 		ObjectOutputStream objectToServerSide = new ObjectOutputStream(client.getOutputStream());
 		ObjectInputStream objectFromServerSide = new ObjectInputStream(client.getInputStream());
 
-		objectToServerSide.writeObject(query);
+		objectToServerSide.writeObject(queryStringFromBrowserForm);
+
+		PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE html>");
+
 		try
 		{
 			Set<Person> filteredPersons = (Set<Person>) objectFromServerSide.readObject();
@@ -41,9 +43,8 @@ public class Search extends HttpServlet
 		}
 		catch (ClassNotFoundException e)
 		{
+			System.err.println("Something went wrong!");
 			e.printStackTrace();
 		}
-
 	}
-
 }

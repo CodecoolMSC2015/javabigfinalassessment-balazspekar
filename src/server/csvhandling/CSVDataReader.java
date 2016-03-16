@@ -40,10 +40,8 @@ public class CSVDataReader extends DataReader
 			}
 			catch (Exception e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
 
 		return result;

@@ -1,3 +1,10 @@
+/* Some Additional Info
+ * 
+ * You must have a running process of the PersonStoreServerSocket.java and a running Tomcat Server with the deployed webapp
+ * Searching is case sensitive.
+ * After every search you must re-start the PersonStoreServerSocket.java
+ * Search for only one Skill at a time, multiple queries separated with commas are not supported */
+
 package server;
 
 import java.io.ObjectInputStream;
@@ -18,7 +25,6 @@ public class PersonStoreServerSocket
 
 	public void start()
 	{
-
 		try
 		{
 			ServerSocket storageServer = new ServerSocket(port);
@@ -28,14 +34,17 @@ public class PersonStoreServerSocket
 
 			String queryFromClient = (String) objectFromClientSide.readObject();
 
-			System.out.println("This is is the query received from the Client: ");
+			//System.out.println("This is is the query received from the Client: ");
 
 			store.setSearchType(SearchType.OPTIONAL);
 			store.setSerachCriteria(queryFromClient);
+
 			Set<Person> filteredPersons = store.getPersons();
-			System.out.println(filteredPersons);
+
+			//System.out.println(filteredPersons);
 
 			objectToClientSide.writeObject(filteredPersons);
+
 			objectFromClientSide.close();
 			objectFromClientSide.close();
 
@@ -44,7 +53,6 @@ public class PersonStoreServerSocket
 		{
 			e.printStackTrace();
 		}
-
 	}
 
 	public static void main(String[] args)
@@ -52,5 +60,4 @@ public class PersonStoreServerSocket
 		System.out.println("Starting Storage Server");
 		new PersonStoreServerSocket().start();
 	}
-
 }
