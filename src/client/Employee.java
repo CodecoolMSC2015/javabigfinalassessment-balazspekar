@@ -1,5 +1,7 @@
 package client;
 
+import server.Person;
+
 public class Employee extends Person
 {
 	private int salary;

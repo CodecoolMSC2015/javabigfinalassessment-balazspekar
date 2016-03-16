@@ -2,9 +2,8 @@ package server;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.HashSet;
 import java.util.Set;
-
-import client.Person;
 
 public class CSVDataReader extends DataReader
 {
@@ -22,7 +21,7 @@ public class CSVDataReader extends DataReader
 		String line = "";
 		BufferedReader br;
 		String csvSplitBy = ",";
-		Set<Person> result = null;
+		Set<Person> result = new HashSet<Person>();
 
 		if (searchType == SearchType.OPTIONAL)
 		{
@@ -34,7 +33,7 @@ public class CSVDataReader extends DataReader
 					String[] lineData = line.split(csvSplitBy);
 					if (lineData[2].equals(searchCriteria))
 					{
-						createPersonObject(line);
+						result.add(createPersonObject(line));
 					}
 				}
 			}
@@ -51,10 +50,12 @@ public class CSVDataReader extends DataReader
 
 	private Person createPersonObject(String line)
 	{
-
-		System.out.println("CPO");
-		System.out.println(line);
-		return null;
+		//System.out.println(line);
+		String csvSplitBy = ",";
+		String[] lineData = line.split(csvSplitBy);
+		//System.out.println("Name: " + lineData[0]);
+		//System.out.println("Email: " + lineData[1]);
+		return new Person(lineData[0], lineData[1]);
 	}
 
 	@Override

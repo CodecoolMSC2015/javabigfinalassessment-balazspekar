@@ -2,8 +2,6 @@ package server;
 
 import java.util.Set;
 
-import client.Person;
-
 public class PersonStoreServerSocket
 {
 
@@ -12,7 +10,7 @@ public class PersonStoreServerSocket
 	public void start()
 	{
 		store.setSearchType(SearchType.OPTIONAL);
-		store.setSerachCriteria("Git");
+		store.setSerachCriteria("Java");
 		Set<Person> filteredPersons = store.getPersons();
 		System.out.println(filteredPersons);
 	}

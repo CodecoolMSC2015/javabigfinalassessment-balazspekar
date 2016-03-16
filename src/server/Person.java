@@ -1,6 +1,8 @@
-package client;
+package server;
 
 import java.util.List;
+
+import client.Skill;
 
 public class Person
 {
@@ -52,6 +54,12 @@ public class Person
 	public void addSkill(Skill skill)
 	{
 		this.skillset.add(skill);
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Name: " + getName() + " Email: " + getEmail();
 	}
 
 }

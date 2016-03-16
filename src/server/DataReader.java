@@ -2,8 +2,6 @@ package server;
 
 import java.util.Set;
 
-import client.Person;
-
 public abstract class DataReader
 {
 	protected String searchCriteria;
