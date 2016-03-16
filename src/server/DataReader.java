@@ -6,10 +6,10 @@ import client.Person;
 
 public abstract class DataReader
 {
-	private String searchCriteria;
-	private SearchType searchType;
+	protected String searchCriteria;
+	protected SearchType searchType;
 
-	public abstract Set<Person> getPersons(String string, SearchType searchtype);
+	public abstract Set<Person> getPersons();
 
 	public abstract void setSerachCriteria(String searchcriteria);
 

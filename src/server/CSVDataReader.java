@@ -1,6 +1,7 @@
 package server;
 
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Set;
 
 import client.Person;
@@ -9,7 +10,6 @@ public class CSVDataReader extends DataReader
 {
 
 	private String csvFilePath;
-	private List<Person> persons;
 
 	public CSVDataReader(String csvFilePath)
 	{
@@ -17,24 +17,56 @@ public class CSVDataReader extends DataReader
 	}
 
 	@Override
-	public Set<Person> getPersons(String string, SearchType searchtype)
+	public Set<Person> getPersons()
 	{
-		// TODO Auto-generated method stub
+		String line = "";
+		BufferedReader br;
+		String csvSplitBy = ",";
+		Set<Person> result = null;
+
+		if (searchType == SearchType.OPTIONAL)
+		{
+			try
+			{
+				br = new BufferedReader(new FileReader(csvFilePath));
+				while ((line = br.readLine()) != null)
+				{
+					String[] lineData = line.split(csvSplitBy);
+					if (lineData[2].equals(searchCriteria))
+					{
+						createPersonObject(line);
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+		return result;
+	}
+
+	private Person createPersonObject(String line)
+	{
+
+		System.out.println("CPO");
+		System.out.println(line);
 		return null;
 	}
 
 	@Override
 	public void setSerachCriteria(String searchcriteria)
 	{
-		// TODO Auto-generated method stub
-
+		this.searchCriteria = searchcriteria;
 	}
 
 	@Override
 	public void setSearchType(SearchType searchtype)
 	{
-		// TODO Auto-generated method stub
-
+		this.searchType = searchtype;
 	}
 
 }

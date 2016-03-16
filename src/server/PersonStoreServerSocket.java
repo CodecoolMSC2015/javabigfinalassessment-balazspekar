@@ -7,15 +7,19 @@ import client.Person;
 public class PersonStoreServerSocket
 {
 
-	private DataReader store = new CSVDataReader("D:\\data.csv");
+	private DataReader store = new CSVDataReader("D:\\persons.csv");
 
 	public void start()
 	{
-		Set<Person> filteredPersons = store.getPersons("Git", SearchType.OPTIONAL);
+		store.setSearchType(SearchType.OPTIONAL);
+		store.setSerachCriteria("Git");
+		Set<Person> filteredPersons = store.getPersons();
+		System.out.println(filteredPersons);
 	}
 
 	public static void main(String[] args)
 	{
+		System.out.println("Starting Storage Server");
 		new PersonStoreServerSocket().start();
 	}
 
