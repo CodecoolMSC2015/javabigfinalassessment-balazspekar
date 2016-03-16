@@ -1,8 +1,6 @@
-package server;
+package server.prospects;
 
 import java.util.List;
-
-import client.Skill;
 
 public class Person
 {

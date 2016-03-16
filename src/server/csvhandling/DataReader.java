@@ -1,6 +1,8 @@
-package server;
+package server.csvhandling;
 
 import java.util.Set;
+
+import server.prospects.Person;
 
 public abstract class DataReader
 {

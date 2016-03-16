@@ -1,4 +1,4 @@
-package server;
+package server.csvhandling;
 
 public enum SearchType
 {

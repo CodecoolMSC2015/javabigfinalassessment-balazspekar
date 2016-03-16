@@ -1,13 +1,14 @@
-package server;
+package server.csvhandling;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.HashSet;
 import java.util.Set;
 
+import server.prospects.Person;
+
 public class CSVDataReader extends DataReader
 {
-
 	private String csvFilePath;
 
 	public CSVDataReader(String csvFilePath)

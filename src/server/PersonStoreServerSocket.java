@@ -2,6 +2,11 @@ package server;
 
 import java.util.Set;
 
+import server.csvhandling.CSVDataReader;
+import server.csvhandling.DataReader;
+import server.csvhandling.SearchType;
+import server.prospects.Person;
+
 public class PersonStoreServerSocket
 {
 

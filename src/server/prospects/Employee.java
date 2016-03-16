@@ -1,6 +1,4 @@
-package client;
-
-import server.Person;
+package server.prospects;
 
 public class Employee extends Person
 {
