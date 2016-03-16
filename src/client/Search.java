@@ -5,11 +5,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import server.prospects.Person;
 
 public class Search extends HttpServlet
 {
@@ -27,6 +30,20 @@ public class Search extends HttpServlet
 		ObjectInputStream objectFromServerSide = new ObjectInputStream(client.getInputStream());
 
 		objectToServerSide.writeObject(query);
+		try
+		{
+			Set<Person> filteredPersons = (Set<Person>) objectFromServerSide.readObject();
+			out.println("<b>Query result:</b><br>");
+			for (Person person : filteredPersons)
+			{
+				out.println(person.toString() + "<br>");
+			}
+		}
+		catch (ClassNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+
 	}
 
 }

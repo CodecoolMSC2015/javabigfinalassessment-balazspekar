@@ -1,8 +1,9 @@
 package server.prospects;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Person
+public class Person implements Serializable
 {
 	private String name;
 	private String email;
@@ -57,7 +58,7 @@ public class Person
 	@Override
 	public String toString()
 	{
-		return "Name: " + getName() + " Email: " + getEmail();
+		return "Name: " + getName() + " | E-mail: " + getEmail();
 	}
 
 }
